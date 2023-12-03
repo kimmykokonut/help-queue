@@ -6,4 +6,4 @@ function Header(){
   );
 }
 
-expect default Header;
+export default Header;
