@@ -1,10 +1,6 @@
 import React from "react";
 import Ticket from "./Ticket";
 import PropTypes from 'prop-types';
-// import { v4 } from 'uuid';
-
-// const ticket = {};
-// ticket.id = v4(); //auto generatie UUID
 
 // dummy static list removed now adding state.
 // const mainTicketList = [
@@ -28,8 +24,8 @@ import PropTypes from 'prop-types';
 function TicketList(props) { //add props to get parent f()
   return (
     <React.Fragment>
-      <hr/>
-      {props.TicketList.map((ticket, index) => //loop list passed from TickCont parent
+      <hr />
+      {props.ticketList.map((ticket, index) => //loop list passed from TickCont parent
         <Ticket names={ticket.names}
           location={ticket.location}
           issue={ticket.issue}
@@ -39,7 +35,7 @@ function TicketList(props) { //add props to get parent f()
   );
 }
 
-TicketList.PropTypes = { //add this with new prop passed down
+TicketList.propTypes = { //add this with new prop passed down
   ticketList: PropTypes.array
 };
 
