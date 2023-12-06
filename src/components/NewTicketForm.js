@@ -1,6 +1,12 @@
 import React from 'react';
 
 function NewTicketForm() {
+  function handleNewTicketFormSubmission(e) {
+    e.preventDefault();
+    console.log(e.target.names.value);
+    console.log(e.target.location.value);
+    console.log(e.target.issue.value);
+  }
   return (
     <React.Fragment>
       <form onSubmit={handleNewTicketFormSubmission}>
@@ -10,20 +16,13 @@ function NewTicketForm() {
           placeholder='Pair Names' />
         <input
           type='text'
-          name='name'
+          name='location'
           placeholder='Location' />
         <textarea
           name='issue'
           placeholder='Describe your issue' />
         <button type='submit'>Help!</button>
       </form>
-
-      function handleNewTicketFormSubmission(e) {
-        e.preventDefault();
-        console.log(event.target.names.value);
-        console.log(event.target.location.value);
-        console.log(event.target.issue.value);
-      }
     </React.Fragment>
   );
 }
