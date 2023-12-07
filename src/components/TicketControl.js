@@ -2,6 +2,7 @@ import React from "react";
 import NewTicketForm from "./NewTicketForm";
 import TicketList from "./TicketList";
 import TicketDetail from "./TicketDetail";
+import EditTicketForm from "./EditTicketForm";
 
 class TicketControl extends React.Component {
 
@@ -10,7 +11,8 @@ class TicketControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainTicketList: [], //add this prop and pass down as prop to TicketList. empty so don't start with fake tickets
-      selectedTicket: null //if user clicks ticket, this updated to correct ticket to show
+      selectedTicket: null, //if user clicks ticket, this updated to correct ticket to show
+      editing: false //new slice for editform
     };
   }
   handleClick = () => {
@@ -41,12 +43,19 @@ class TicketControl extends React.Component {
       selectedTicket: null
     });
   }
+  handleEditClick = () => {
+    console.log("handleEditClick reached");
+    this.setState({editing: true});
+  }
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if (this.state.selectedTicket != null) {
-      currentlyVisibleState = <TicketDetail ticket={this.state.selectedTicket} onClickingDelete = {this.handleDeletingTicket} />
+    if (this.state.editing) {
+      currentlyVisibleState = <EditTicketForm ticket = {this.state.selectedTicket} />
+      buttonText= "Return to Ticket List";
+    } else if (this.state.selectedTicket != null) {
+      currentlyVisibleState = <TicketDetail ticket={this.state.selectedTicket} onClickingDelete = {this.handleDeletingTicket} onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Ticket List";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />; //passing handle() down to NewtickForm as prop called onNewTicketCreation
