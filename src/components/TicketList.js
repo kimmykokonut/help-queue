@@ -25,18 +25,22 @@ function TicketList(props) { //add props to get parent f()
   return (
     <React.Fragment>
       <hr />
-      {props.ticketList.map((ticket, index) => //loop list passed from TickCont parent
-        <Ticket names={ticket.names}
+      {props.ticketList.map((ticket) => //loop list passed from TickCont parent
+        <Ticket
+          whenTicketClicked = { props.onTicketSelection }
+          names={ticket.names}
           location={ticket.location}
           issue={ticket.issue}
-          key={index}/>
+          id={ticket.id}
+          key={ticket.id}/>
         )}
     </React.Fragment>
   );
 }
 
 TicketList.propTypes = { //add this with new prop passed down
-  ticketList: PropTypes.array
+  ticketList: PropTypes.array,
+  onTicketSelection: PropTypes.func
 };
 
 export default TicketList;
