@@ -61,4 +61,28 @@ describe('ticketListReducer', () => {
     });
   });
 
+  test('Should successfully update an existing ticket', () => {
+
+    action = {
+        type: 'ADD_TICKET',
+        names: 'Kim & Matt',
+        location: 'Richmond',
+        issue: 'not working',
+        id: 1
+    };
+    expect(ticketListReducer(currentState, action)).toEqual({
+        1: {
+            names: 'Kim & Matt',
+            location: 'Richmond',
+            issue: 'not working',
+            id: 1
+        }, 2: {
+            names: 'Jasmine and Justine',
+            location: "2a",
+            issue: 'Reducer has side effects.',
+            id: 2
+        }
+    });
+});
+
 });
