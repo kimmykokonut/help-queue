@@ -1,4 +1,4 @@
-import ticketListReducer from "../../reducers/ticketListReducer";
+import ticketListReducer from "../../reducers/ticket-list-reducer.js";
 
 describe('ticketListReducer', () => {
   let action;
