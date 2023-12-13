@@ -2,6 +2,7 @@ import rootReducer from '../../reducers/index.js';
 import { legacy_createStore as createStore } from 'redux';
 import formVisibleReducer from '../../reducers/form-visible-reducer';
 import ticketListReducer from '../../reducers/ticket-list-reducer';
+import * as c from './../actions/ActionTypes';
 
 let store = createStore(rootReducer);
 
@@ -22,7 +23,7 @@ describe('rootReducer', () => {
 
   test('Check that ADD_TICKET action works for ticketListReducer and root reducer', () => {
     const action = {
-      type: 'ADD_TICKET',
+      type: c.ADD_TICKET,
       names: 'Ryan & Aimen',
       location: '4b',
       issue: 'Redux action is not working correctly.', 
@@ -34,7 +35,7 @@ describe('rootReducer', () => {
   // //these tests dispatch an action. rootred shoudl handle the actions by passing into ind. reducers and update state slice
   test('Check that TOGGLE_FORM action works for formVisibleReducer and root reducer', () => {
     const action = {
-      type: 'TOGGLE_FORM'
+      type: c.TOGGLE_FORM
     }
     store.dispatch(action);
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, action));
