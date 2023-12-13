@@ -10,7 +10,7 @@ import rootReducer from './reducers/index';
 
 const store = createStore(rootReducer);
 store.subscribe(() =>
-  console.log(store.getState()) //good for testing adn keeping eye on current state
+  console.log(store.getState()) //good for testing and keeping eye on current state
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
