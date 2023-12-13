@@ -2,7 +2,7 @@ import rootReducer from '../../reducers/index.js';
 import { legacy_createStore as createStore } from 'redux';
 import formVisibleReducer from '../../reducers/form-visible-reducer';
 import ticketListReducer from '../../reducers/ticket-list-reducer';
-import * as c from './../actions/ActionTypes';
+import * as c from './../../actions/ActionTypes.js';
 
 let store = createStore(rootReducer);
 

@@ -1,7 +1,5 @@
 import ticketListReducer from "../../reducers/ticket-list-reducer.js";
-import * as c from './../actions/ActionTypes';
-
-
+import * as c from './../../actions/ActionTypes.js';
 
 describe('ticketListReducer', () => {
   let action;
@@ -67,25 +65,25 @@ describe('ticketListReducer', () => {
   test('Should successfully update an existing ticket', () => {
 
     action = {
-        type: c.ADD_TICKET,
+      type: c.ADD_TICKET,
+      names: 'Kim & Matt',
+      location: 'Richmond',
+      issue: 'not working',
+      id: 1
+    };
+    expect(ticketListReducer(currentState, action)).toEqual({
+      1: {
         names: 'Kim & Matt',
         location: 'Richmond',
         issue: 'not working',
         id: 1
-    };
-    expect(ticketListReducer(currentState, action)).toEqual({
-        1: {
-            names: 'Kim & Matt',
-            location: 'Richmond',
-            issue: 'not working',
-            id: 1
-        }, 2: {
-            names: 'Jasmine and Justine',
-            location: "2a",
-            issue: 'Reducer has side effects.',
-            id: 2
-        }
+      }, 2: {
+        names: 'Tegan & Sara',
+        location: '2a',
+        issue: 'Reducer has side effects.',
+        id: 2
+      }
     });
-});
+  });
 
 });
