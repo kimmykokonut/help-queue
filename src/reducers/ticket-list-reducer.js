@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import * as c from './../actions/ActionTypes';
 
 const reducer = (state = {}, action) => {
@@ -9,6 +10,8 @@ const reducer = (state = {}, action) => {
           names: names,
           location: location,
           issue: issue,
+          timeOpen: timeOpen,
+          formattedWaitTime: formattedWaitTime,
           id: id
         }
       });
