@@ -16,6 +16,22 @@ class TicketControl extends React.Component {
       editing: false 
     };
   }
+  componentDidMount() {  //this sets the timer. using 'this' to make property of component
+    this.waitTimeUpdateTimer = setInterval(() => 
+      this.updateTicketElapsedWaitTime(),
+      6000
+    );
+  }
+  componentDidUpdate() { //triggered w/ea change to UI
+    console.log("component updated!");
+  }
+  componentWillUnmount() { //called when comp. cleared from UI
+    console.log("component unmounted!");
+    clearInterval(this.waitTimeUpdateTimer); //need to call clearInterval() to stop timer. that's why the timer is saved in var waitTimeUpdateTimer.
+  }
+  updateTicketElapsedWaitTime = () => { //this updates UI queue time. triggered ea sec in setInterval() in componentDidMount()
+    console.log("tick");
+  }
   handleClick = () => {
     if (this.state.selectedTicket != null) {
       this.setState({
