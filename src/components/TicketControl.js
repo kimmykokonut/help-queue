@@ -6,6 +6,7 @@ import EditTicketForm from "./EditTicketForm";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as a from './../actions';
+import { formatDistanceToNow } from "date-fns";
 
 class TicketControl extends React.Component {
 
@@ -19,18 +20,26 @@ class TicketControl extends React.Component {
   componentDidMount() {  //this sets the timer. using 'this' to make property of component
     this.waitTimeUpdateTimer = setInterval(() => 
       this.updateTicketElapsedWaitTime(),
-      6000
+      60000
     );
   }
-  componentDidUpdate() { //triggered w/ea change to UI
-    console.log("component updated!");
-  }
+  // componentDidUpdate() { //triggered w/ea change to UI
+  //   console.log("component updated!");
+  // }
   componentWillUnmount() { //called when comp. cleared from UI
     console.log("component unmounted!");
     clearInterval(this.waitTimeUpdateTimer); //need to call clearInterval() to stop timer. that's why the timer is saved in var waitTimeUpdateTimer.
   }
   updateTicketElapsedWaitTime = () => { //this updates UI queue time. triggered ea sec in setInterval() in componentDidMount()
     console.log("tick");
+    const { dispatch } = this.props;
+    Object.values(this.props.mainTicketList).forEach(ticket => {
+      const newFormattedWaitTime = formatDistanceToNow(ticket.timeOpen, {
+        addSuffix: true 
+      });
+      const action = a.updateTime(ticket.id, newFormattedWaitTime);
+      dispatch(action);
+    });
   }
   handleClick = () => {
     if (this.state.selectedTicket != null) {
