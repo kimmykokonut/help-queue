@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as a from './../actions';
 import { formatDistanceToNow } from "date-fns";
+import { ThemeContext } from "../context/theme-context";
 
 class TicketControl extends React.Component {
 
@@ -83,6 +84,12 @@ class TicketControl extends React.Component {
     });
   }
   render() {
+    let theme = this.context; //access context value
+    const buttonStyles = { //create button styles
+      backgroundColor: theme.buttonBackground,
+      color: theme.textColor,
+    }
+
     let currentlyVisibleState = null;
     let buttonText = null;
 
@@ -105,7 +112,7 @@ class TicketControl extends React.Component {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button style={buttonStyles} onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
@@ -124,5 +131,7 @@ const mapStateToProps = state => {
 }
 
 TicketControl = connect(mapStateToProps)(TicketControl);
+
+TicketControl.contextType = ThemeContext; //create cTprop and set to Themecontext
 
 export default TicketControl;

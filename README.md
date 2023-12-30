@@ -1,5 +1,10 @@
 ![Diagram of components](src/img/component-diagram.drawio.svg)
 
+# Follow along exercise of Help Queue Epicodus Project
+_learning React, component diagrams, class components, reducers, actions, TDD testing, lifecycles with date-fns library, context for dark mode toggle_
+
+* branch "redux-starter-project" converts main branch project refactored for Redux
+
 
 
 # Getting Started with Create React App
