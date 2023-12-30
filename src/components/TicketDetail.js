@@ -5,6 +5,11 @@ import { ThemeContext } from '../context/theme-context';
 function TicketDetail(props) {
   const { ticket, onClickingDelete } = props; //obj destructure so no need props.ticket.location
   const theme = useContext(ThemeContext); //create consumer
+
+  if (!theme) {
+    throw new Error("Themecontext must be used within a Themecontext.Provider!");
+  }
+
   const styles = {
     backgroundColor: theme.buttonBackground,
     color: theme.textColor
