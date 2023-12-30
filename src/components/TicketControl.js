@@ -85,6 +85,7 @@ class TicketControl extends React.Component {
   }
   render() {
     let theme = this.context; //access context value
+    console.log(theme); //empty obj
     const buttonStyles = { //create button styles
       backgroundColor: theme.buttonBackground,
       color: theme.textColor,
@@ -129,9 +130,8 @@ const mapStateToProps = state => {
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
+TicketControl.contextType = ThemeContext; //create cTprop and set to Themecontext
 
 TicketControl = connect(mapStateToProps)(TicketControl);
-
-TicketControl.contextType = ThemeContext; //create cTprop and set to Themecontext
 
 export default TicketControl;
